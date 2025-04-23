@@ -11,5 +11,9 @@ $include <dt-bindings/zmk/bt.h>
                 &kp = KC_A
             >;
         };
+        encoder-bindings = <
+            &encoder0
+            &encoder_btn
+        >;
     };
 };
