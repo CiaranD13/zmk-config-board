@@ -3,12 +3,20 @@
 $include <dt-bindings/zmk/bt.h>
 
 /{
+    behaviors {
+        my_macro: my_macro {
+            compatible = "zmk,behavior-macro";
+            label = "My Macro";
+            bindings = <&kp C &kp A &kp T>; // This example types "CAT"
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             bindings = <
-                &kp = KC_A
+                &kp A              /*&my_macro*/
             >;
         };
         encoder-bindings = <
