@@ -16,7 +16,7 @@ $include <dt-bindings/zmk/bt.h>
 
         default_layer {
             bindings = <
-                &kp A              /*&my_macro*/
+                &kp A              /*&my_macro , &bat -for battery possibly*/
             >;
         };
         encoder-bindings = <
