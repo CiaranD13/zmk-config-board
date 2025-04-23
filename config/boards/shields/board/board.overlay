@@ -44,3 +44,22 @@
             <&pro_micro 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
     };
 };
+
+/ {
+    encoder_knob: encoder_knob {
+        compatible = "zmk,behavior-rotary-encoder";
+        label = "Rotary Encoder";                    /*optional*/
+        a-gpios = <&gpio0 10 GPIO_PULL_UP>;          
+        b-gpios = <&gpio0 11 GPIO_PULL_UP>;
+        steps = <4>;                                /*state changes per step, change if want faster or slower*/
+        clockwise-binding = <&kp VOL_UP>;            /*
+        counter-clockwise-binding = <&kp VOL_DOWN>;
+    };
+
+    encoder_btn: encoder_btn {
+        compatible = "zmk,behavior-momentary";
+        label = "Encoder Button";
+        bindings = <&kp MUTE>;
+        gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
+    };
+};
