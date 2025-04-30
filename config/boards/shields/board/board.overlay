@@ -1,65 +1,46 @@
 #include <dt-bindings/zmk/matrix_transform.h>
-/*
-/{
-    chosen {
-        zmk,kscan = &default_kscan;
-        zmk,matrix_transform = &default_transform;
-    };
 
+/ {
     default_kscan: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         label = "default_kscan";
         diode-direction = "col2row";
 
-        row-gpios = <&pro-micro /*#*| (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
-                    /*repeat for all rows*|;
+        row-gpios = <&pro-micro 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+                    <&pro-micro 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
         
-        col-gpios = <&pro_micro /*#*| GPIO_ACTIVE_HIGH>
-                    /*repeat for all col*|;
+        col-gpios = <&pro_micro 3 GPIO_ACTIVE_HIGH>,
+                    <&pro_micro 4 GPIO_ACTIVE_HIGH>,
+                    <&pro_micro 5 GPIO_ACTIVE_HIGH>;
     };
 
     default_transform: matrix_transform {             /*allows for custom shape in matrix,*|
         compatible = "zmk,matrix-transform";          /*expects basic matrix without this*|
-        rows = </*#*|>;
-        columns = </*#*|>;
+        rows = <2>;
+        columns = <3>;
 
         map = <
-            RC(/*#,#*|), RC(/*#*|), /*...*|
+            RC(0,0) RC(0,1) RC(0,2)
+            RC(1,0) RC(1,1) RC(1,2)
         >;
     };
-};
-*/
 
-  
-/{
-    chosen {
-        zmk,kscan = &default_kscan;
-    };
-    
-    default_kscan: kscan {
-        compatible = "zmk,kscan-gpio-direct";
-        label = "default_kscan";
-        
-        input-gpios =
-            <&pro_micro 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-    };
-};
 
-/ {
     encoder_knob: encoder_knob {
-        compatible = "zmk,behavior-rotary-encoder";
-        label = "Rotary Encoder";                    /*optional*/
-        a-gpios = <&gpio0 10 GPIO_PULL_UP>;          
-        b-gpios = <&gpio0 11 GPIO_PULL_UP>;
-        steps = <4>;                                /*state changes per step, change if want faster or slower*/
-        clockwise-binding = <&kp VOL_UP>;            /*
-        counter-clockwise-binding = <&kp VOL_DOWN>;
+        compatible = "alps,ec11";
+        a-gpios = <PIN_A (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;          
+        b-gpios = <PIN_B (GPIO_ACTIVE_HIGH | GPIO_PULL_UP>;
+        steps = <80>;                                /*changes depending on encoder*/
+        status = "disabled";
     };
 
-    encoder_btn: encoder_btn {
-        compatible = "zmk,behavior-momentary";
-        label = "Encoder Button";
-        bindings = <&kp MUTE>;
-        gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&encoder_knob>;
+        triggers-per-rotation = <10>;            /*# of times behavior is triggered in 1 full rotation*/
+    };
+
+    &encoder_knob {
+        status = "okay";
     };
 };
