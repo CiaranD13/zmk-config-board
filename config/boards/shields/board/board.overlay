@@ -29,7 +29,7 @@
     encoder_knob: encoder_knob {
         compatible = "alps,ec11";
         a-gpios = <PIN_A (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;          
-        b-gpios = <PIN_B (GPIO_ACTIVE_HIGH | GPIO_PULL_UP>;
+        b-gpios = <PIN_B (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         steps = <80>;                                /*changes depending on encoder*/
         status = "disabled";
     };

@@ -1,3 +1,3 @@
 config SHIELD_BOARD
-    def_bool $(shields_list_contains, board)
+    def_bool $(shields_list_contains,board)
     
