@@ -4,7 +4,7 @@
 
 /{
     behaviors {
-        my_macro:  {
+        inc_dec_kp: inc_dec_kp  {
             compatible = "zmk,behavior-sensor-rotate-var";
             #sensor-binding-cells = <2>;
             bindings = <&kp>, <&kp>;
