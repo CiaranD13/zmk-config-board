@@ -44,3 +44,15 @@
         status = "okay";
     };
 };
+
+//declare dynamic key behavior
+/ {
+    behaviors {
+        dyn_key_0: dynamic_key_0 {
+            compatible = "zmk,behavior-dynamic-key";
+            label = "DYN_KEY_0";
+            #binding-cells = <1>;
+        };
+    };
+};
+
