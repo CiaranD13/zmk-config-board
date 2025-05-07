@@ -26,3 +26,10 @@
 
     };
 };
+
+
+//bindings for dynamic key
+bindings = <
+    &dynamic_key_0 0 &dynamic_key_0 1 &dynamic_key_0 2
+    &dynamic_key_0 3 &dynamic_key_0 4 &dynamic_key_0 5
+>;
